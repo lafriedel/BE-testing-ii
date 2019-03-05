@@ -9,36 +9,35 @@ class Dashboard extends React.Component {
     
       recordStrike = e => {
         e.preventDefault();
-        if (this.state.strikes >=0 && this.state.strikes < 2) {
-          this.setState(prevState => {
-            return {
-              ...this.state,
-              strikes: prevState.strikes + 1
-            }
+        if (this.state.strikes === 2) {
+          this.setState({
+              strikes: 0,
+              balls: 0
           })
         } else {
-          this.setState({
-            ...this.state,
-            strikes: 0
-    
-          })
+            this.setState(prevState => {
+                return {
+                  ...this.state,
+                  strikes: prevState.strikes + 1
+                }
+              })
         }
       };
 
       recordBall = e => {
           e.preventDefault();
-          if (this.state.balls >= 0 && this.state.balls < 3) {
-              this.setState(prevState => {
-                  return {
-                      ...this.state,
-                      balls: prevState.balls + 1
-                  }
+          if (this.state.balls === 3) {
+              this.setState({
+                  balls: 0,
+                  strikes: 0
               })
           } else {
-              this.setState({
-                  ...this.state,
-                  balls: 0
-              })
+            this.setState(prevState => {
+                return {
+                    ...this.state,
+                    balls: prevState.balls + 1
+                }
+            })
           }
       }
     render() {
