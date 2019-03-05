@@ -37,5 +37,20 @@ describe('Dashboard', () => {
         expect(ballCount.textContent).toBe("3");
         fireEvent.click(ballButton);
         expect(ballCount.textContent).toBe("0");
-    })
+    });
+
+    it('updates foul count according to game rules', () => {
+        const { getByText } = render(<Dashboard />);
+        const { getByTestId } = render(<Display />);
+    
+        const foulButton = getByText(/record foul/i);
+        const foulCount = getByTestId('fouls');
+    
+        expect(foulCount.textContent).toBe("0");
+        fireEvent.click(foulButton);
+        expect(foulCount.textContent).toBe("1");
+        fireEvent.click(foulButton);
+        expect(foulCount.textContent).toBe("2");
+
+    });
 })
