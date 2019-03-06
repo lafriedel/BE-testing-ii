@@ -9,9 +9,9 @@ describe('Dashboard', () => {
     });
 
     it('updates strike count according to game rules when strike button is fired', () => {
-        const { getByTestId } = render(<Dashboard />);
+        const { getByTestId, getByText } = render(<Dashboard />);
     
-        const strikeButton = getByTestId("strikeBtn");
+        const strikeButton = getByText(/record strike/i);
         const strikeCount = getByTestId('strikes');
     
         expect(strikeCount.textContent).toBe("0");
@@ -24,9 +24,9 @@ describe('Dashboard', () => {
     });
 
     it('updates ball count according to game rules when ball button is fired', () => {
-        const { getByTestId } = render(<Dashboard />);
+        const { getByTestId, getByText } = render(<Dashboard />);
     
-        const ballButton = getByTestId("ballBtn");
+        const ballButton = getByText(/record ball/i);
         const ballCount = getByTestId('balls');
     
         expect(ballCount.textContent).toBe("0");
@@ -41,9 +41,9 @@ describe('Dashboard', () => {
     });
 
     it('updates strike count according to game rules when foul button is fired', () => {
-        const { getByTestId } = render(<Dashboard />);
+        const { getByTestId, getByText } = render(<Dashboard />);
     
-        const foulButton = getByTestId("foulBtn");
+        const foulButton = getByText(/record foul/i);
         const strikeCount = getByTestId('strikes');
 
         fireEvent.click(foulButton);
@@ -55,11 +55,11 @@ describe('Dashboard', () => {
     });
 
     it('resets ball and strike count when hit button is pressed', () => {
-        const { getByTestId } = render(<Dashboard />);
+        const { getByTestId, getByText } = render(<Dashboard />);
         const strikeCount = getByTestId("strikes");
         const ballCount = getByTestId("balls");
-        const hitButton = getByTestId("hitBtn");
-        
+        const hitButton = getByText(/record hit/i);
+
         fireEvent.click(hitButton);
         expect(strikeCount.textContent).toBe("0");
         expect(ballCount.textContent).toBe("0");
