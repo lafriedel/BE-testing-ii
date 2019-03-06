@@ -8,6 +8,20 @@ describe('Dashboard', () => {
         render(<Dashboard />);
     });
 
+    it('renders strike, ball, foul and hit buttons', () => {
+        const { getByText } = render(<Dashboard />);
+
+        const strikeBtn = getByText(/record strike/i);
+        const ballBtn = getByText(/record ball/i);
+        const foulBtn = getByText(/record foul/i);
+        const hitBtn = getByText(/record hit/i);
+
+        expect(strikeBtn).toBeInTheDocument();
+        expect(ballBtn).toBeInTheDocument();
+        expect(foulBtn).toBeInTheDocument();
+        expect(hitBtn).toBeInTheDocument();
+    })
+
     it('updates strike count according to game rules when strike button is fired', () => {
         const { getByTestId, getByText } = render(<Dashboard />);
     
